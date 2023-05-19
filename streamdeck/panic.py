@@ -2,7 +2,7 @@
 from pythonosc.udp_client import SimpleUDPClient
 import time
 
-client = SimpleUDPClient("localhost", 53535)
+client = SimpleUDPClient("localhost", 53000)
 client.send_message("/PANIC", [])
 time.sleep(0.2)
 client.send_message("/PANIC", [])
