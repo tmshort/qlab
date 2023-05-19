@@ -94,3 +94,10 @@ Hence, the "end-of-the-chain" recommendation.
 
 Of course, if you end up skipping back over other types of cues, then it's likely those cues occured at the wrong time.
 The `/undo` command may be more useful than `/back` in this case.
+
+ToDo
+----
+
+Need to handle auto-continue/auto-follow light cues. When going back to a cue with one of those, the lights will just
+go back to the current state. Instead, it needs to not re-run a cue that's an auto-follow/continue, and instead just pop it off the list
+of cues, and continue back. This might be weird if the first Light cue(s) are auto-continue/auto-follow. Can't back up from that!
