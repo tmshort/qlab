@@ -22,7 +22,7 @@ Scripts
 Programs
 --------
 
-The file `modem.c` is used to interact with the USB serial port. To build:
+The file `modem.c` is used to interact with the USB serial port. Used by `ring.sh`. To build:
 ```
 gcc -o modem modem.c
 ```
