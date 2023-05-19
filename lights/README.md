@@ -47,7 +47,8 @@ Possible commands (proably case-sensitive):
 * `/quit` - terminate the script
 * `/pause` - temporarily pause the collecting of cue data
 * `/resume` - continue collecting cue data
-* `/back` - back up to the last cue, in case someone hit *GO*, one too many times.
+* `/back` - undo the previous light cue by running the Light cue prior to that. Reset the playhead to the previous Light cue. Useful when someone hit **GO**, one too many times.
+* `/undo` - like `/back`, but don't reset the playhead, helps avoid re-running non-Light cues. If Light cues are not collated, this may result in unexpected behavior.
 
 Running
 -------
@@ -68,6 +69,8 @@ The `LASTLIGHT` cue will be named `2`.
 
 If `/back` is executed, then Light cue 1 is run again, and the playhead is moved to Light cue 2. The `LASTLIGHT` cue will be named `1`.
 
+If `/undo` is executed, then Light cue 1 is run again, but the playhead remains at Light cue 3. The `LASTLIGHT` cue will be named `1`.
+
 Hitting `ESC` or doing a panic, will terminate the script.
 
 The `light-cues.py` script can be run outside of QLab, but the last light cue run will not show up in the Active cues.
@@ -77,9 +80,17 @@ Notes
 
 The script works best in a theatrical setting, where only one light cue is running at a time. If multiple Light cues
 are run simultaneously, the program will still work, but the assumption is that the last invoked Light cue is the last
-Light cue run, even if a prior light cue is still running. This is generally not compatible with the *collate* option,
+Light cue run, even if a prior light cue is still running. This is generally not compatible with the **collate** option,
 however.
 
-The *collate* option, which makes QLab more "light board"-like, will make the Light cues work better in this context.
+The **collate** option, which makes QLab more "light board"-like, will make the Light cues work better in this context.
 No checks are made to see if the *colate* option is enabled.
 
+When cues are auto-continued or auto-followed, it is generally better to have the Light cue at the end of the chain.
+
+Non-Light cues are ignored when the playhead is reset via `/back`.
+Thus, it might be possible that other cues (e.g. audio) are replayed because of this.
+Hence, the "end-of-the-chain" recommendation.
+
+Of course, if you end up skipping back over other types of cues, then it's likely those cues occured at the wrong time.
+The `/undo` command may be more useful than `/back` in this case.

@@ -41,11 +41,22 @@ def back_handler(address, *args):
     if len(cues_run) > 1:
         next_cue = cues_run.pop()
         rerun_cue = cues_run[-1]
-        print(f"rerun: {cue_numbers[rerun_cue]}")
-        print(f"next: {cue_numbers[next_cue]}")
+        #print(f"rerun: {cue_numbers[rerun_cue]}")
+        #print(f"next: {cue_numbers[next_cue]}")
         client.send_message(f"/workspace/{workspace}/cue_id/{rerun_cue}/start", [])
         client.send_message(f"/workspace/{workspace}/cue/{update_cue}/name", [f"{cue_numbers[rerun_cue]}",])
         client.send_message(f"/workspace/{workspace}/cue/{cue_numbers[next_cue]}/loadAndSetPlayhead", [])
+
+def undo_handler(address, *args):
+    # Undo one light cue, but we need 2
+    if len(cues_run) > 1:
+        next_cue = cues_run.pop()
+        rerun_cue = cues_run[-1]
+        #print(f"rerun: {cue_numbers[rerun_cue]}")
+        #print(f"next: {cue_numbers[next_cue]}")
+        client.send_message(f"/workspace/{workspace}/cue_id/{rerun_cue}/start", [])
+        client.send_message(f"/workspace/{workspace}/cue/{update_cue}/name", [f"{cue_numbers[rerun_cue]}",])
+        # unlike /back, don't reset the playhead
     
 def filter_handler(address, *args):
     print(f"{address}: {args}")
@@ -70,7 +81,7 @@ def type_handler(address, *args):
         t = d['data']
         if t == "Light":
             # this is a light cue, so determine if it is running
-            print(f"Cue {c} type: {d['data']}")
+            #print(f"Cue {c} type: {d['data']}")
             client.send_message(f"/workspace/{s[3]}/cue_id/{s[5]}/isActionRunning", [])
 
 def number_handler(address, *args):
@@ -113,6 +124,7 @@ dispatcher.map("/quit", quit_handler)
 dispatcher.map("/pause", pause_handler)
 dispatcher.map("/resume", resume_handler)
 dispatcher.map("/back", back_handler)
+dispatcher.map("/undo", undo_handler)
 
 async def loop():
     count = 0
@@ -127,7 +139,7 @@ async def loop():
 async def init_main():
     server = AsyncIOOSCUDPServer((ip, listenPort), dispatcher, asyncio.get_event_loop())
     transport, protocol = await server.create_serve_endpoint()  # Create datagram endpoint and start serving
-    print(f"Listening on port {listenPort}")
+    #print(f"Listening on port {listenPort}")
 
     client.send_message("/updates", ["1",])
     client.send_message("/thump", [])
