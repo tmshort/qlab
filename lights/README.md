@@ -34,13 +34,17 @@ do shell script "/Users/<you>/git/qlab/lights/light-cues.py"
 The cue name is important, as the name of the script is updated to reflect
 the last light cue executed.
 
-2. _Optional:_ Configure a Network output, if you want to do 3, below:
+2. In the Workplace settings, go to **Network > OCS Access**.
+2a. Check "Allow OSC connections"
+2b. Check **View**, **Edit**, **Control** for the "No Passcode" option.
+
+3. _Optional:_ Configure a Network output, if you want to do 4, below:
 
 | Type | Network | Interface | Destination | Passcode |
 |------|---------|-----------|-------------|----------|
 | OSC Message | UDP | Automatic | 127.0.0.1 53001| |
 
-3. _Optional:_ Create Network OSC cues to send commands to the Light Cue Tracker. Use hot keys (e.g. `B`) to quickly invoke them.
+4. _Optional:_ Create Network OSC cues to send commands to the Light Cue Tracker. Use hot keys (e.g. `B`) to quickly invoke them.
 
 Possible commands (proably case-sensitive):
 * `/clear` - clear cue data
