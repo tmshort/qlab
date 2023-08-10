@@ -17,7 +17,7 @@ Scripts
 * `ring.sh` is used to start a call
 * `hangup.sh` is used to hang up a call
 * `reset_modem.sh` is used to reset the modem before or after use
-
+* `modem.py` can be used to perform all of the above (commands = `ring`, `hangup` and `reset`)
 
 Programs
 --------
