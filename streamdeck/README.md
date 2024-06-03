@@ -1,7 +1,9 @@
 StreamDeck Files
 ================
 
-These files allow interaction with a USB modem to ring a telephone.
+These files support interaction between QLab and a StreamDeck or other controller (even the terminal).
+
+For StreamDeck, I recommend the **MIDI** or **OSC Remote** plug-ins; they're a bit easier than using python.
 
 Images
 ------

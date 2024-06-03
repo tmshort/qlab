@@ -11,6 +11,11 @@ Setup
 
 ```
 
+Requirements
+------------
+
+The python script is designed for Macs that have installed python3 via [HomeBrew](https://brew.sh/). The script assumes python3 is in `/usr/local/bin/python3`.
+
 Scripts
 -------
 
@@ -27,4 +32,4 @@ The file `modem.c` is used to interact with the USB serial port. Used by `ring.s
 gcc -o modem modem.c
 ```
 
-
+The file `modem.py` is similar, but is written in python and does not need to be compiled. The shell script files (`*.sh`) would need to be modified to use the python script.
